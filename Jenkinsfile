@@ -1,15 +1,16 @@
 pipeline {
-  agent any
-  stages {
-    stage('Checkout') {
-      steps {
-        git 'https://github.com/khadidjanemis5-wq/MonApp.git'
-      }
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                // هنا نحدّد الفرع صراحةً
+                git branch: 'main', url: 'https://github.com/khadidjanemis5-wq/MonApp.git'
+            }
+        }
+        stage('Run App') {
+            steps {
+                sh 'python app.py'
+            }
+        }
     }
-    stage('Run App') {
-      steps {
-        sh 'python3 app.py'
-      }
-    }
-  }
 }
